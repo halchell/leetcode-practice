@@ -1,0 +1,37 @@
+name: Test TypeScript
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-typescript:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./typescript
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. pnpm のセットアップ
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9 # バージョンは任意（最新の9系など）
+
+      # 2. Node.js のセットアップ（pnpm のキャッシュを有効化）
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: "./typescript/pnpm-lock.yaml"
+
+      # 3. 依存関係のインストール
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 4. テスト実行
+      - name: Run tests
+        run: pnpm test
