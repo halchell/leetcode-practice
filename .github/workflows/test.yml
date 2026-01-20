@@ -1,4 +1,4 @@
-name: Test TypeScript
+name: Tests
 
 on:
   push:
@@ -35,3 +35,23 @@ jobs:
       # 4. テスト実行
       - name: Run tests
         run: pnpm test
+
+  test-java:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./java
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Java のセットアップ
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "maven"
+
+      # 2. テスト実行
+      - name: Run tests
+        run: ./mvnw test
