@@ -13,7 +13,8 @@ class SolutionTest {
     static Stream<TwoSumSolver> solutionProvider() {
         return Stream.of(
             new BruteForceSolution(),
-            new TwoPassHashTableSolution()
+            new TwoPassHashTableSolution(),
+            new OnePassHashTableSolution()
         );
     }
 
