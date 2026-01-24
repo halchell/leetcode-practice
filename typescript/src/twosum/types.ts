@@ -1,0 +1,1 @@
+export type TwoSumSolver = (nums: number[], target: number) => number[];
