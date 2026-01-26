@@ -1,9 +1,11 @@
 import { describe, test, expect } from 'vitest';
 import { TwoSumSolver } from './types';
 import { bruteForceSolution } from './brute-force-solution';
+import { twoPassHashTableSolution } from './twopass-hashtable-solution';
 
 const solutions: [string, TwoSumSolver][] = [
   ['BruteForceSolution', bruteForceSolution],
+  ['TwoPassHashTableSolution', twoPassHashTableSolution],
 ];
 
 describe('Two Sum', () => {
